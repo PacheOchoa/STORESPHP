@@ -30,15 +30,16 @@
               </tr>
           </thead>
           <tbody>
-          <?php while($ver = $ejecutar->fetch()): ?>
+          <?php while($ver = $ejecutar->fetch(PDO::FETCH_NUM)): ?>
               <tr>
               
-                  <td><?php echo $ver['Nombre']; ?></td>
-                  <td><?php echo $ver['ApellidoPaterno']; ?></td>
-                  <td><?php echo $ver['ApellidoMaterno']; ?></td>
-                  <td><?php echo $ver['Edad']; ?></td>
+                  <td><?php echo $ver[1]; ?></td>
+                  <td><?php echo $ver[2]; ?></td>
+                  <td><?php echo $ver[3]; ?></td>
+                  <td><?php echo $ver[4]; ?></td>
                   <td>
-                    <span class="fas fa-edit" data-toggle="modal" data-target="#modalUpdate" > </span>
+                    <span class="fas fa-edit" data-toggle="modal" data-target="#modalUpdate" 
+                    onclick="AgregarDatos('<?php echo $ver[0]; ?>')"> </span>
                   </td>
                   <td>
                     

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-02-2019 a las 20:23:05
+-- Tiempo de generación: 13-02-2019 a las 02:54:46
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -26,9 +26,16 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_actualizar_datos` (IN `NombreU` VARCHAR(40), IN `ApellidoPaternoU` VARCHAR(40), IN `ApellidoMaterno` VARCHAR(40), IN `EdadU` INT, IN `idPersona` INT)  UPDATE personas SET Nombre = NombreU, ApellidoPaterno = ApellidoPaternoU, ApellidoPaterno = ApellidoPaternoU, Edad = EdadU WHERE id = idPersona$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_eliminarPersona` (IN `idPersona` INT)  DELETE FROM personas WHERE id = idPersona$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insertar_datos` (IN `NombreI` VARCHAR(40), IN `ApellidoPaternoI` VARCHAR(40), IN `ApellidoMaternoI` VARCHAR(40), IN `EdadI` VARCHAR(40))  INSERT into personas(Nombre,ApellidoPaterno,ApellidoMaterno,Edad) VALUES(NombreI,ApellidoPaternoI, ApellidoMaternoI,EdadI)$$
 
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_mostrar_datos` ()  SELECT id,Nombre,ApellidoPaterno,ApellidoMaterno,Edad from personas$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_obtener_datosPersona` (IN `idPersona` INT)  SELECT Nombre,ApellidoPaterno,ApellidoMaterno,Edad FROM personas WHERE id = idPersona$$
 
 DELIMITER ;
 
@@ -51,9 +58,8 @@ CREATE TABLE `personas` (
 --
 
 INSERT INTO `personas` (`id`, `Nombre`, `ApellidoPaterno`, `ApellidoMaterno`, `Edad`) VALUES
-(1, 'Sergio', 'Ochoa', 'Zamora', 21),
+(1, 'Roberto', 'chavez', 'Zamora', 34),
 (2, 'sergio', 'ramirez', 'gonzalez', 23),
-(3, 'Nombre', 'ApellidoPaterno', 'ApellidoMaterno', 21),
 (4, 'Rosa', 'Zamora', 'Mariscal', 43),
 (5, 'Rosa', 'Zamora', 'Mariscal', 43),
 (6, 'Sergio', 'Ochoa', 'muÃ±oz', 45),

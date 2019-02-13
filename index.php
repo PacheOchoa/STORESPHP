@@ -72,8 +72,8 @@
       </div>
       <div class="modal-body">
 
-         <form id="frmAgregar" method="post">
-
+         <form id="frmUpdate" method="post">
+              <input type="hidden" name="idpersona" id="idpersona" class="form-control input-sm">
               <label for="Nombre">Nombre</label>
               <input type="text" name="nombreU" id="nombreU" class="form-control input-sm">
               <label for="ApellidoPaterno">Apellido Paterno</label>
@@ -91,7 +91,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="btnUpdate">Guardar</button>
+        <button type="button" class="btn btn-primary" id="btnUpdate">Actualizar</button>
       </div>
     </div>
   </div>
@@ -149,5 +149,54 @@
     return vacios;
   }
  </script>
+
+
+  <script> 
+     function AgregarDatos(idpersona){
+      
+        $.ajax({
+            type : "POST",
+            data : "idpersona=" + idpersona,
+            url : "php/obtenDatos.php",
+            success : function(r){
+                 
+                 
+
+                datos = jQuery.parseJSON(r);
+
+                $('#idpersona').val(datos['id']);
+                $('#nombreU').val(datos['NombreU']);
+                $('#ApellidoPaternoU').val(datos['ApellidoPaternoU']);
+                $('#ApellidoMaternoU').val(datos['ApellidoMaternoU']);
+                $('#EdadU').val(datos['EdadU']);
+
+
+            }
+        });
+     }
+  </script>
+
+  <script>
+      $(document).ready(function(){
+        $('#btnUpdate').click(function(){
+           datos = $('#frmUpdate').serialize();
+           $.ajax({
+              type : "POST",
+              data: datos,
+              url : "php/actualizar.php",
+              success : function(r){
+                 if(r ==1){
+                   $('#frmUpdate')[0].reset();
+                   $('#tablastores').load('tabla.php');
+                   alert(r);
+                 }else{
+                    alert(r);
+                 }
+              }
+
+           });
+        });
+      });
+  </script>
 </body>
 </html>
