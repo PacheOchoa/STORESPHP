@@ -11,13 +11,13 @@
 
 
 
-  $sql = "CALL sp_actualizar_datos(:Nombre,:ApellidoPaterno,:ApellidoMaterno,:Edad,:id)";
+  $sql = "CALL sp_actualizar_datos(:NombreU,:ApellidoPaternoU,:ApellidoMaternoU,:EdadU,:idU)";
 
   $ejec = $conexion->prepare($sql);
 
-  $ejec->BindParam(":Nombre",$NombreU);
-  $ejec->BindParam(":ApellidoPaterno",$ApellidoPaternoU);
-  $ejec->BindParam(":ApellidoMaterno",$ApellidoMaternoU);
+  $ejec->BindParam(":NombreU",$NombreU);
+  $ejec->BindParam(":ApellidoPaternoU",$ApellidoPaternoU);
+  $ejec->BindParam(":ApellidoMaternoU",$ApellidoMaternoU);
   $ejec->BindParam(":Edad",$EdadU);
   $ejec->BindParam(":id",$id_U);
 
