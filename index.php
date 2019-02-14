@@ -165,10 +165,10 @@
                 datos = jQuery.parseJSON(r);
 
                 $('#idpersona').val(datos['id']);
-                $('#nombreU').val(datos['NombreU']);
-                $('#ApellidoPaternoU').val(datos['ApellidoPaternoU']);
-                $('#ApellidoMaternoU').val(datos['ApellidoMaternoU']);
-                $('#EdadU').val(datos['EdadU']);
+                $('#nombreU').val(datos['Nombre']);
+                $('#ApellidoPaternoU').val(datos['ApellidoPaterno']);
+                $('#ApellidoMaternoU').val(datos['ApellidoMaterno']);
+                $('#EdadU').val(datos['Edad']);
 
 
             }
@@ -181,16 +181,16 @@
         $('#btnUpdate').click(function(){
            datos = $('#frmUpdate').serialize();
            $.ajax({
-              type : "POST",
-              data: datos,
-              url : "php/actualizar.php",
-              success : function(r){
-                 if(r ==1){
+              type :"POST",
+              data:datos,
+              url :"php/actualizar.php",
+              success:function(r){
+                 if(r==1){
                    $('#frmUpdate')[0].reset();
                    $('#tablastores').load('tabla.php');
-                   alert(r);
+                   alertify.success("se actualizó con exito");
                  }else{
-                    alert(r);
+                    alertify.success("NO se pudo actualizar :/");
                  }
               }
 
@@ -198,5 +198,31 @@
         });
       });
   </script>
+
+  <script>
+      function Eliminar(idpersona){
+        alertify.confirm("¿Deseas eliminar? ",
+        function(){
+          $.ajax({
+              type :"POST",
+              data :"idpersona=" +idpersona,
+              url :"php/eliminar.php",
+              success: function(r){
+                 if(r==1){
+                  $('#tablastores').load('tabla.php');
+                    alertify.success("Eliminado");
+                 }else{
+                  alertify.error("NO SE PUDO ELIMINAR :/");
+                 }
+              }
+          });
+        }
+        ,function(){
+          alertify.error('cancelo');
+        });
+      }
+
+  </script>
+
 </body>
 </html>

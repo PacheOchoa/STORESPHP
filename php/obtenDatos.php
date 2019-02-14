@@ -18,11 +18,11 @@ $idpersona = $_POST['idpersona'];
  
   
 
-  $persona = array('idpersona' =>$datos[0],
-                   'NombreU' => $datos[1],
-                   'ApellidoPaternoU' => $datos[2],
-                   'ApellidoMaternoU' => $datos[3],
-                   'EdadU' => $datos[4]
+  $persona = array('id' =>$datos[0],
+                   'nombre' => $datos[1],
+                   'ApellidoPaterno' => $datos[2],
+                   'ApellidoMaterno' => $datos[3],
+                   'Edad' => $datos[4]
 ); 
 
 echo json_encode($persona);

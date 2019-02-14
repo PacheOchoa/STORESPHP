@@ -6,20 +6,18 @@
   $id_U = $_POST['idpersona'];
   $NombreU = $_POST['nombreU'];
   $ApellidoPaternoU = $_POST['ApellidoPaternoU'];
-  $ApellidoMaternoU = $_POST['ApellidoPaternoU'];
+  $ApellidoMaternoU = $_POST['ApellidoMaternoU'];
   $EdadU = $_POST['EdadU'];
 
 
 
-  $sql = "CALL sp_actualizar_datos(:NombreU,:ApellidoPaternoU,:ApellidoMaternoU,:EdadU,:idU)";
+  $ejec = $conexion->prepare( "CALL sp_actualizar_datos(:Nombre,:ApellidoPaterno,:ApellidoMaterno,:Edad,:id)");
 
-  $ejec = $conexion->prepare($sql);
-
-  $ejec->BindParam(":NombreU",$NombreU);
-  $ejec->BindParam(":ApellidoPaternoU",$ApellidoPaternoU);
-  $ejec->BindParam(":ApellidoMaternoU",$ApellidoMaternoU);
-  $ejec->BindParam(":Edad",$EdadU);
-  $ejec->BindParam(":id",$id_U);
+  $ejec->BindParam(":Nombre",$NombreU);
+  $ejec->BindParam(":ApellidoPaterno",$ApellidoPaternoU);
+  $ejec->BindParam(":ApellidoMaterno",$ApellidoMaternoU);
+  $ejec->BindParam(":Edad",$EdadU,PDO::PARAM_INT);
+  $ejec->BindParam(":id",$id_U,PDO::PARAM_INT);
 
 
   echo $ejec->execute();

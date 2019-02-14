@@ -38,11 +38,13 @@
                   <td><?php echo $ver[3]; ?></td>
                   <td><?php echo $ver[4]; ?></td>
                   <td>
-                    <span class="fas fa-edit" data-toggle="modal" data-target="#modalUpdate" 
-                    onclick="AgregarDatos('<?php echo $ver[0]; ?>')"> </span>
+                    <span class="btn btn-raised btn-warning btn-xs" data-toggle="modal" data-target="#modalUpdate" 
+                    onclick="AgregarDatos('<?php echo $ver[0]; ?>')"> Editar </span>
                   </td>
+
                   <td>
-                    
+                  <span class="btn btn-raised btn-danger btn-xs"  
+                    onclick="Eliminar('<?php echo $ver[0]; ?>')"> Eliminar </span>
                   </td>
               </tr>
           </tbody>
