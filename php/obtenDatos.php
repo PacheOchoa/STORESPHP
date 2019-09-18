@@ -4,11 +4,11 @@
  include_once 'Conexion.php';
 
 $idpersona = $_POST['idpersona'];
- $sql = "call sp_obtener_datosPersona(:idpersona)";
+ $sql = "SELECT id,nombre_asesores FROM asesores WHERE id=:ida";
 
  $res = $conexion->prepare($sql);
 
- $res->BindParam(':idpersona',$idpersona,PDO::PARAM_INT);
+ $res->BindParam(':ida',$idpersona,PDO::PARAM_INT);
 
  $res->execute();
 
@@ -19,10 +19,8 @@ $idpersona = $_POST['idpersona'];
   
 
   $persona = array('id' =>$datos[0],
-                   'nombre' => $datos[1],
-                   'ApellidoPaterno' => $datos[2],
-                   'ApellidoMaterno' => $datos[3],
-                   'Edad' => $datos[4]
+                   'nombre' => $datos[1]
+                   
 ); 
 
 echo json_encode($persona);

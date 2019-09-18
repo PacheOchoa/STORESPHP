@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CRUD STORES PHP</title>
+    <title>ASESORES DE GUIA</title>
     <?php require_once 'dependencias.php'; ?>
 </head>
 <body>
     <div class="container">
        <br>
-        <h1>CRUD CON STORE PROCEDURE EN PHP </h1>
+        <h1>ASESORES DE GUIA </h1>
         <div class="row">
           <div class="col-sm-12">
              <div id="tablastores">
@@ -27,7 +27,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar Persona</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Asesor</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -38,16 +38,7 @@
 
               <label for="Nombre">Nombre</label>
               <input type="text" name="nombre" id="nombre" class="form-control input-sm">
-              <label for="ApellidoPaterno">Apellido Paterno</label>
-              <input type="text" name="ApellidoPaterno" id="ApellidoPaterno"  class="form-control input-sm">
-
-              <label for="ApellidoMaterno">Apellido Materno</label>
-              <input type="text" name="ApellidoMaterno" id="ApellidoMaterno"  class="form-control input-sm">
-
-              
-
-              <label for="Edad">Edad</label>
-              <input type="text" name="Edad" id="Edad"  class="form-control input-sm">
+             
 
          </form>
       </div>
@@ -76,17 +67,7 @@
               <input type="hidden" name="idpersona" id="idpersona" class="form-control input-sm">
               <label for="Nombre">Nombre</label>
               <input type="text" name="nombreU" id="nombreU" class="form-control input-sm">
-              <label for="ApellidoPaterno">Apellido Paterno</label>
-              <input type="text" name="ApellidoPaternoU" id="ApellidoPaternoU"  class="form-control input-sm">
-
-              
-
-              <label for="ApellidoMaterno">Apellido Materno</label>
-              <input type="text" name="ApellidoMaternoU" id="ApellidoMaternoU"  class="form-control input-sm">
-
-              <label for="Edad">Edad</label>
-              <input type="text" name="EdadU" id="EdadU"  class="form-control input-sm">
-
+             
          </form>
       </div>
       <div class="modal-footer">
@@ -127,7 +108,7 @@
                     
 
                 }else{
-                  alertify.error("No se pudo insertar :/");
+                  alertify.error(r);
                 }
             }
         });
@@ -153,22 +134,24 @@
 
   <script> 
      function AgregarDatos(idpersona){
+
+       
       
         $.ajax({
             type : "POST",
             data : "idpersona=" + idpersona,
             url : "php/obtenDatos.php",
             success : function(r){
-                 
-                 
+                
 
                 datos = jQuery.parseJSON(r);
 
+                console.log(datos);
+
+
                 $('#idpersona').val(datos['id']);
-                $('#nombreU').val(datos['Nombre']);
-                $('#ApellidoPaternoU').val(datos['ApellidoPaterno']);
-                $('#ApellidoMaternoU').val(datos['ApellidoMaterno']);
-                $('#EdadU').val(datos['Edad']);
+                $('#nombreU').val(datos['nombre']);
+               
 
 
             }

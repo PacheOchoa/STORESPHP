@@ -3,28 +3,27 @@
     
       include_once "php/Conexion.php";
 
-      $sql = "CALL sp_mostrar_datos";
+      $sql = "SELECT * FROM `asesores`";
 
       $ejecutar = $conexion->prepare($sql);
 
       $ejecutar->execute();
 
     ?>
-    
+    <br>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregar">
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalAgregar">
         Agregar Nuevo
       </button>
 
+      <br>
 
-      <table class="table table-light">
+
+      <table class="table table-striped table-bordered" cellspacing="0" width="100%" id="tabla">
           <thead class="thead-light">
               <tr>
-                  
+                  <th> # </th>
                   <th>Nombre</th>
-                  <th>Apellido Paterno</th>
-                  <th>Apellido Materno</th>
-                  <th>Edad</th>
                   <th>Editar</th>
                   <th>Eliminar</th>
               </tr>
@@ -33,10 +32,9 @@
           <?php while($ver = $ejecutar->fetch(PDO::FETCH_NUM)): ?>
               <tr>
               
+                  <td><?php echo $ver[0]; ?></td>
                   <td><?php echo $ver[1]; ?></td>
-                  <td><?php echo $ver[2]; ?></td>
-                  <td><?php echo $ver[3]; ?></td>
-                  <td><?php echo $ver[4]; ?></td>
+                  
                   <td>
                     <span class="btn btn-raised btn-warning btn-xs" data-toggle="modal" data-target="#modalUpdate" 
                     onclick="AgregarDatos('<?php echo $ver[0]; ?>')"> Editar </span>
@@ -50,3 +48,6 @@
           </tbody>
 <?php endwhile; ?>
       </table>
+
+
+    

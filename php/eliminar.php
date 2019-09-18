@@ -3,11 +3,11 @@
 
  $id = $_POST['idpersona'];
 
- $sql = "CALL sp_eliminarPersona(:idpersona)";
+ $sql = "DELETE FROM asesores WHERE id=:ida";
 
  $ejec = $conexion->prepare($sql);
 
- $ejec->BindParam(":idpersona",$id,PDO::PARAM_INT);
+ $ejec->BindParam(":ida",$id,PDO::PARAM_INT);
 
  echo $ejec->execute()
 
